@@ -54,6 +54,8 @@ By the final review, this README should clearly show:
 ---
 
 # 1. Team Identity
+<img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/0665fe7a-f222-44a4-8db5-1162f3a1218d" />
+youtube link : https://youtu.be/1L_xsDM3E0Y?si=P1ingHMGlONj3RnL 
 
 ## 1.1 TrinityRoulette 
 
