@@ -55,7 +55,7 @@ By the final review, this README should clearly show:
 
 # 1. Team Identity
 
-## 1.1 Studio / Group Name
+## 1.1 TrinityRoulette 
 
 `Project^2`
 
@@ -66,7 +66,7 @@ By the final review, this README should clearly show:
 | `Gopalakrishnan` | `[Electronics / Coding / App ]` | `Documentation`  | `Documentation, Gift of Gab `|
 | `KAder Shaikh`  | `[Electronics / Fabrication]`   | `[Coding]`     | `Material Handling, Hardware`    |
 
-## 1.3 Project Title
+## 1.3 Chamber Zero
 
 `"Project Project"`
 
@@ -76,7 +76,7 @@ By the final review, this README should clearly show:
 
 ## 1.4 One-Line Pitch
 
-`A projected, fully customizable time portal where engineering education is done through PUBG battlefield in the comfort of our home`
+Chamber Zero is a real-life interactive adaptation of Buckshot Roulette that blends suspense, strategy, and probability through smart embedded hardware and immersive gameplay.
 
 ## 1.5 Expanded Project Idea
 
