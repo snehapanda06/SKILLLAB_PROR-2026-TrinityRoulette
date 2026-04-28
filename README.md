@@ -312,10 +312,7 @@ Insert a hand-drawn or software-made circuit diagram.
 
 | Tool / Platform                | Purpose                                        |
 | ------------------------------ | ---------------------------------------------- |
-| `[MicroPython]`                | `Control ESP32`                                |
-| `[Python/PyGame/OpenCV]`       | `Track markers, game logic, create projection` |
-| `[Fusion/Blender/Illustrator]` | `[Prototyping structure]`                      |
-|                                |                                                |
+| `[C++ Arduino IDE]`            | `Program the RP2040 and control the other components`  |
 
 ## 10.2 Software Logic
 
@@ -335,7 +332,7 @@ Include:
 `
 
 - **Startup behavior:**  
-  The ESP32 initializes motor pins, PWM control, and starts a WiFi access point with a web server. The laptop initializes camera input, tracking system, and projection mapping.
+  .
 - **Input handling:**  
   Movement commands are received from the laptop (pygame sends http requests)
 - **Sensor reading:**  
@@ -447,12 +444,12 @@ Include:
 
 | Area                 | Main Owner | Support Owner |
 | -------------------- | ---------- | ------------- |
-| Concept              | `[Gopal]`  | `[Kader]`    |
-| Electronics          | `[]`       | `[]`     |
-| Coding               | `[]`       | `[]`     |
-| Mechanical build     | `[]`       | `[]`    |
-| Testing              | `[]`       | `[]`    |
-| Documentation        | `[]`       | `[]`     |
+| Concept              | `[Saad]`   | `[Raj]`       |
+| Electronics          | `[Raj]`    | `[Saad]`      |
+| Coding               | `[Saad]`   | `[Sneha]`     |
+| Mechanical build     | `[Raj]`    | `[Sneha]`     |
+| Testing              | `[Saad]    | `[Sneha]`     |
+| Documentation        | `[Sneha]`  | `[Raj]`       |
 
 ---
 
@@ -464,12 +461,12 @@ Include:
 
 Expected outcomes:
 
-- [x] Idea finalized
-- [x] Core interaction decided
-- [x] Sketches made
+- [y] Idea finalized
+- [y] Core interaction decided
+- [y] Sketches made
 - [x] BOM completed
-- [x] Purchase needs identified
-- [ ] Key uncertainty identified
+- [y] Purchase needs identified
+- [y] Key uncertainty identified
 - [x] Basic feasibility tested
 
 ### Bi Hour 2 — Build Subsystems
@@ -477,8 +474,8 @@ Expected outcomes:
 Expected outcomes:
 
 - [x] Electronics tests completed
-- [ ] CAD / structure planning completed
-- [ ] App UI started if needed
+- [-] CAD / structure planning completed
+- [-] App UI started if needed
 - [x] Mechanical concept tested
 - [x] Main subsystems partially working
 
@@ -487,17 +484,17 @@ Expected outcomes:
 Expected outcomes:
 
 - [x] Physical body built
-- [x] Electronics integrated
+- [y] Electronics integrated
 - [x] Code connected to hardware
-- [ ] App connected if required
-- [x] First playable version exists
+- [-] App connected if required
+- [y] First playable version exists
 
 ### Bi Hour 4 — Refine and Finish
 
 Expected outcomes:
 
-- [x] Technical bugs reduced
-- [x] Playtesting completed
+- [y] Technical bugs reduced
+- [y] Playtesting completed
 - [x] Improvements made
 - [x] Documentation completed
 - [x] Final build ready
@@ -516,10 +513,29 @@ Expected outcomes:
 # 14. Risks and Unknowns
 
 ## 14.1 Risk Register
+Risk1 and other factors:
+Loose wiring or breadboard disconnections during gameplay	
+Technical	
+Medium	
+High	
+Secure connections, use proper jumper wires, minimize movement during demo	
+owner: Raj
 
-| Risk                                                            | Type         | Likelihood | Impact   | Mitigation Plan                                                                       | Owner                |
-| --------------------------------------------------------------- | ------------ | ---------- | -------- | ------------------------------------------------------------------------------------- | -------------------- |
-| WiFi connection between laptop and ESP32 becomes unstable       | `Technical`  | `Medium`   | `High`   | Keep ESP32 close, ensure stable power supply, reduce network load, add fail-safe stop | `[Gopal]`           |
+Risk2:
+LED or buzzer not responding correctly due to GPIO conflicts	
+Technical	
+Medium	
+High	
+Double-check pin mapping, test components individually before integration	
+owner: Saad
+
+Risk3:
+Game logic errors causing incorrect turn/life updates	
+Software	
+Medium	
+High	
+Debug step-by-step, test each function separately before full integration	
+Owner: Raj & Saad
 
 
 ## 14.2 Biggest Unknown Right Now
@@ -527,7 +543,7 @@ Expected outcomes:
 What is the single biggest uncertainty in your project at this stage?
 
 **Response:**  
-
+None
 
 ---
 
@@ -572,21 +588,23 @@ Include:
 - revisions.
 
 **Response:**  
-`The fabrication process involved designing, manufacturing, assembling, and refining both the physical structure and electronic integration of the system.`
+Design and Layout Planning:
+The initial structure was planned by measuring the table space and arranging positions for the RP2040 board, push buttons, LEDs, buzzer, and display. A themed layout was created to ensure the project looked organized, interactive, and visually appealing.
 
-`Design (CAD Modeling):
-The initial model was created using CAD software, where components were designed based on the actual dimensions of the electronic parts. This ensured accurate fitting and minimized errors during assembly.
-Cutting (Laser Cutting):
-The designed parts were fabricated using laser cutting techniques. Sheets were cut precisely according to the CAD model to create the structural base and mounts for components.`
+Cutting and Base Preparation:
+Cardboard, foam board, or acrylic sheets were cut according to the required dimensions to create the main base panel, side supports, and decorative sections. Openings were marked and cut for buttons, LEDs, and the display module.
 
-`Components were fixed using adhesives and mechanical supports. Certain parts were intentionally kept modular (not permanently fixed) to allow easy replacement and modification of electronics.
-Surface Finishing:
-Some parts were sanded to smooth rough edges after cutting. Sawdust mixed with adhesive was used to fill gaps and uneven edges, improving structural finish. The final structure was then painted for better aesthetics and durability.`
+Assembly and Fastening:
+All structural parts were assembled using glue, double-sided tape, screws, or zip ties depending on the material used. Components were mounted securely while keeping some sections removable for maintenance or upgrades.
 
-`Environment Setup (Dark Room Fabrication):
-To enhance projection visibility, a controlled dark environment was created using Z-boards, paper sheets, and bedsheets. This minimized external light interference and improved projection clarity.
-Revisions and Iterations:
-Multiple adjustments were made throughout the process, including refining alignment, improving structural stability, repositioning components, and optimizing the interaction between the physical car and projected environment.`
+Wiring and Electronics Integration:
+The RP2040, LEDs, push buttons, buzzer, and display were connected on a breadboard using jumper wires. Proper cable routing was maintained to keep the setup neat and prevent loose connections. All components shared a common ground for stable operation.
+
+Finishing and Aesthetics:
+The outer body was covered using chart paper, paint, or vinyl sheets to match the suspenseful game theme. Labels, logos, and decorative lighting were added to improve presentation quality.
+
+Testing and Revisions:
+Several iterations were made during development, including repositioning components for better usability, improving button response, adjusting LED brightness, refining sound timing, and correcting wiring issues. Final testing ensured smooth gameplay and reliable performance.`
 
 ## 16.2 Build Photos
 
@@ -613,21 +631,22 @@ Suggested images:
 Describe the final version of your project.
 
 **Response:**  
-
+The final version of Chamber Zero is a compact tabletop interactive game featuring an RP2040 microcontroller, two control buttons, life-indicator LEDs, turn LEDs, a buzzer, and a display unit. Players take turns pressing the buttons to choose actions, while the system processes the game logic and updates lights, sounds, and player status. It is housed in a themed enclosure with clean wiring and delivers an immersive suspense-based multiplayer gaming experience
 
 ## 17.2 What Works Well
 
-
+The game logic runs smoothly, button inputs respond accurately, LEDs clearly indicate lives and turns, and the buzzer enhances the gameplay experience. The compact tabletop design also makes the project easy to demonstrate and engaging for users.
 
 ## 17.3 What Still Needs Improvement
-
+The outer casing can be improved for a more polished finish, additional sound effects can be added, and the display interface can be made more visually attractive. Future versions can also include more game modes and wireless features.
 
 ## 17.4 What Changed From the Original Plan
 
 How did the project change from the initial idea?
 
-**Response:**  
 
+**Response:**  
+The initial idea focused mainly on recreating the digital game physically, but during development we simplified the structure, optimized component usage, and improved usability by focusing on responsive controls, clearer indicators, and a more practical tabletop setup
 
 ---
 
@@ -640,6 +659,7 @@ What slowed you down?
 How well did you manage time, tasks, and responsibilities?
 
 **Response:**  
+Our team worked well in dividing tasks such as coding, wiring, and design. Good communication helped us solve issues quickly. Time was mainly slowed by testing errors and hardware adjustments, but responsibilities were managed effectively to complete the project on schedule.
 
 
 ## 18.2 Technical Reflection
@@ -653,7 +673,7 @@ What did you learn about:
 - integration?
 
 **Response:**  
-
+We learned how to interface electronic components with a microcontroller, program game logic, manage GPIO inputs and outputs, troubleshoot circuits, and integrate hardware with software into one working system. with many challenes faced along the way, the project came into life as expected.
 
 ## 18.3 Design Reflection
 
@@ -667,14 +687,14 @@ What did you learn about:
 - iteration?
 
 **Response:**  
-
+We learned the importance of creating a clear and attractive design, making controls easy to understand, improving user interaction, and refining the setup through multiple iterations based on testing.
 
 ## 18.4 If You Had One More hour
 
 What would you improve next?
 
 **Response:**  
-
+We would improve the casing finish, add more sound and lighting effects, refine the display interface, and perform additional gameplay testing for an even smoother experience.
 ` `
 
 ---
@@ -683,23 +703,23 @@ What would you improve next?
 
 Before submission, confirm that:
 
-- [x] Team details are complete
-- [x] Project description is complete
-- [x] Inspiration sources are included
-- [x] Sketches are added
-- [x] BOM is complete
-- [x] Purchase list is complete
-- [x] Budget summary is complete
+- [y] Team details are complete
+- [y] Project description is complete
+- [y] Inspiration sources are included
+- [y] Sketches are added
+- [y] BOM is complete
+- [y] Purchase list is complete
+- [y] Budget summary is complete
 - [x] Mechanical planning is documented if applicable
-- [ ] App planning is documented if applicable
+- [-] App planning is documented if applicable
 - [x] Code flowchart is added
-- [x] Task breakdown is complete
+- [y] Task breakdown is complete
 - [x] Weekly logs are updated
 - [x] Risk register is complete
 - [x] Testing log is updated
 - [x] Playtesting notes are included
 - [x] Build photos are included
-- [x] Final reflection is written
+- [y] Final reflection is written
 <img width="1131" height="1600" alt="image" src="" />
 
 ---
