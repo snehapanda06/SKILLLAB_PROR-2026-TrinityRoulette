@@ -294,8 +294,8 @@ The complete circuit is assembled on a breadboard prototype, allowing easy wirin
 Insert a hand-drawn or software-made circuit diagram.
 
 **Insert image below:**  
-`[Upload image and link here]`
-<img width="867" height="1156" alt="" src="" />
+<img width="1212" height="1600" alt="image" src="https://github.com/user-attachments/assets/a8c07a61-589d-4034-bc58-c6bc5c1f9c64" />
+
 
 
 # 9. Power Plan
