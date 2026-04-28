@@ -134,6 +134,7 @@ Our project brings the experience into the physical world using real hardware co
 ## 4.1 User Journey 
 
 Describe exactly how a user will use the project.Make it a story
+
 **Response:**
 A user approaches Chamber Zero and is greeted by a dramatic game setup with lights, sound effects, and a display screen showing the start menu. After pressing the start button, two players take their positions and the system randomly begins the round. Each player takes turns making decisions under pressure while the display updates the game status in real time. As the round progresses, LED effects and sound cues build suspense, making every turn exciting and unpredictable. Players continue until one participant wins the match, after which the system announces the winner and resets for the next game.
 
@@ -175,7 +176,7 @@ Check all that apply.
 
 - [ ] Motorized
 
-- [ ] Sound-based
+- [x] Sound-based
 
 - [x] Light-based
 
@@ -209,14 +210,15 @@ Physical Structure: The project is built as a tabletop gaming unit containing co
 
 ## 6.3 Input / Output Map
 
-| System Part                              | Type               | What It Does                                                               |
-| RP 2040                                  | Microcontroller    | Receives player inputs, processes them, controls game logic, and manages outputs.
-|LEDs                                      | Output element     | Display lighting effects, player turns, alerts, and game status.
-|Push Buttons                              | User touch points  | Allow players to make choices, start the game, and perform actions during turns.
-|Buzzer                                    |Audio Output Device | Produces sound effects, alerts, and suspense cues during gameplay.
-|LCD Display                               |Visual Output Unit  | Shows menus, turns, player status, health, and game results.
-|Breadboard                                |Circuit Platform    | Holds and connects the electronic components of the system.
-|Jumper Wires                              |Connection Medium   |Transfer signals and power between components
+| System Part                              | Type                | What It Does                                                                     |
+|----------------------------------        |-----------------    |-------------------------------------------------------------------               |
+|RP 2040                                   | Microcontroller     | Receives player inputs, processes them, controls game logic, and manages outputs.|
+|LEDs                                      | Output element      | Display lighting effects, player turns, alerts, and game status.                 |
+|Push Buttons                              | User touch points   | Allow players to make choices, start the game, and perform actions during turns. |
+|Buzzer                                    | Audio Output Device | Produces sound effects, alerts, and suspense cues during gameplay.               |
+|LCD Display                               | Visual Output Unit  | Shows menus, turns, player status, health, and game results.                     |
+|Breadboard                                | Circuit Platform    | Holds and connects the electronic components of the system.                      |
+|Jumper Wires                              | Connection Medium   |Transfer signals and power between components                                     |
 
 # 7. Sketches and Visual Planning
 
@@ -253,10 +255,10 @@ Add a sketch with labels showing:
 
 | Dimension        | Value   |
 | ---------------- | ------- |
-| Length           | `16 cm` |
-| Width            | `16 cm` |
-| Height           | `8 cm`  |
-| Estimated weight | `400 g` |
+| Length           | `25 cm` |
+| Width            | `25 cm` |
+| Height           | `5 cm`  |
+| Estimated weight | `250 g` |
 
 ---
 
@@ -264,26 +266,25 @@ Add a sketch with labels showing:
 
 ## 8.1 Electronics Used
 
-| Component                 | Quantity | Purpose                               |
-| ------------------------- | --------:| ------------------------------------- |
-| `[ESP32]`                 | `1`      | `[Main controller]`                   |
-| `[L298N Motor Driver]`    | `1`      | `[Control Motors]`                    |
-| `[BO Motors]`             | `2`      | `[Rotate wheels]`                     |
-| `[Buck Converter]`        | `1`      | `[Power ESP32]`                       |
-| `[Li Ion Battery Pack]`   | `2`      | `[Power]`                             |
-| `[Projector]`             | `1`      | `[Display obstacles]`                 |
-| `Camera (Webcam / Phone)` | `1`      | `[Tracks car position using markers]` |
+| Component                 | Quantity | Purpose                                       |
+| ------------------------- | --------:| --------------------------------------------- |
+| `[RP2040]`                | `1`      | `[Main controller]`                           |
+| `[LEDs  ]`                | `8`      | `[Players Lives left]`                        |
+| `[LCD]`                   | `1`      | `[Displays Bullet Status]`                    |
+| `[Buzzer]`                | `1`      | `[Sound Effects, for immersive experience]`   |
+| `[Tactile Push Buttons]`  | `2`      | `[Choosing Between Self and Opponent]`        |
+| `[Resistors]`             | `8`      | `[To draw excess current flowing in LED]`     |
 
 ## 8.2 Wiring Plan
 
 Describe the main electrical connections.
 
 **Response:**  
-`The ESP32 is connected to the motor driver (L298N) using four GPIO pins (18,19; 22,23) to control motor direction (IN1, IN2, IN3, IN4). Two PWM-capable pins (ENA and ENB; 25 and 26) are connected to control the speed of each motor.
-
-The motors are connected to the output terminals of the motor driver. The motor driver is powered directly by the battery pack (higher voltage), while the ESP32 receives regulated 5V from the buck converter.
-
-All components share a common ground to ensure stable operation. The projector and camera are connected to the laptop, which handles tracking and game logic separately.`
+The RP2040 microcontroller is connected to two push buttons through GPIO pins 18 and 19, which act as trigger controls for selecting either shoot self or shoot opponent during gameplay. 
+A total of eight LEDs are used as visual indicators: six red LEDs represent player lives, with three LEDs assigned to each player and connected to GPIO pins 10, 11, 14 for Player 1 and 15, 16, 17 for Player 2. Two green LEDs connected to GPIO pins 22 and 23 are used to indicate the current player’s turn. 
+A buzzer connected to GPIO pin 21 provides audio effects such as gunshots, reloading sounds, and elimination cues to enhance immersion. 
+The system is powered through a USB connection, which supplies stable voltage to the RP2040 and all connected components. 
+The complete circuit is assembled on a breadboard prototype, allowing easy wiring, testing, and modifications. All components share a common ground connection to ensure reliable and stable operation throughout the game`
 
 ## 8.3 Circuit Diagram
 
@@ -298,9 +299,9 @@ Insert a hand-drawn or software-made circuit diagram.
 
 | Question         | Response                                                                                                                                          |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Power source     | `Battery (Li-ion pack)`                                                                                                                           |
-| Voltage required | `~6–8.4V for motors (via driver), stepped down to 5V for ESP32 (buck converter)`                                                                  |
-| Current concerns | `Motors can draw high current under load, which may cause voltage drops affecting ESP32 and WiFi stability`                                       |
+| Power source     | `USB Powered`                                                                                                                                     |
+| Voltage required | `5V supplied through USB to power the RP2040 and other connected components                                                                       |
+| Current concerns | `Multiple LEDs and the buzzer may increase current draw, so stable USB power and proper current limiting resistors are required`                  |
 | Safety concerns  | `Avoid over-discharging Li-ion batteries, ensure proper voltage regulation, prevent short circuits, and secure wiring to avoid loose connections` |
 
 ---
@@ -376,11 +377,12 @@ Suggested sequence:
 
 | Item                             | Quantity | In Kit? | Need to Buy? | Estimated Cost | Material / Spec               | Why This Choice?          |
 | -------------------------------- | --------:| ------- | ------------ | --------------:| ----------------------------- | ------------------------- |
-| `[ESP32]`                        | `1`      | `Yes`   | `No`         | `0`            | `38 Pin ESP32`                | `[To control components]` |
-| `[Motor Driver]`                 | `[1]`    | `[Yes]` | `[No]`       | `0`            | `[LN296]`                     | `[To drive both motors]`  |
-| `[DC Motors and wheel]`          | `[2]`    | `[No]`  | `[Yes]`      | `[150]`        | `[BO Motors and 6 cm wheels]` | `[high torque motors]`    |
-| `[Buck Converter]`               | `[1]`    | `[No]`  | `[Yes]`      | `[75]`         |                               |                           |
-| `[Li-ion batteries with holder]` | `[1]`    | `[No]`  | `[Yes]`      | `[200]`        |                               |                           |
+| `[Rp2040]`                       | `[1]`    | `Yes`   | `No`         | `0`            | `RP2040 Board`                | `[To control components]` |
+| `[LEDs]`                         | `[8]`    | `[Yes]` | `[No]`       | `0`            | `[5mm LEDs (6 Red, 2 Green)]` | `[To drive both motors]`  |
+| `[LCD]`                          | `[1]`    | `[No]`  | `[Yes]`      | `[150]`        | `[16x2 LCD or OLED Display]`  | `[high torque motors]`    |
+| `[Buzzer]`                       | `[1]`    | `[Yes]`  | `[No]`      | `[75]`         | `[5V Active Buzzer]`          |                           |
+| `[Resistors]`                    | `[8]`    | `[Yes]`  | `[No]`      | `[50]`        | `[220Ω]`                      |                           |
+| `[Tactile Push Buttons]`         | `[2]`    | `[No]`  | `[Yes]`      | `[5]`        | `[Momentary Push Buttons]`    |                           |
 
 ## 11.2 Material Justification
 
