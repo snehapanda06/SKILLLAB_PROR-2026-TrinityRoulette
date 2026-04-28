@@ -389,7 +389,7 @@ Suggested sequence:
 Explain why you selected your main materials and components.
 
 **Response:**  
-`DC motors (BO motors) were chosen instead of servos or steppers because the system requires continuous rotation for movement rather than precise angular control (Previously, we were considering using steppers as we were planning on tracking movement on the ESP using its relative position from an origin, but since we're using a camera now, this is not required). A motor driver (L298N) was used to allow bidirectional control and speed variation using PWM.`
+`We selected the RP2040 microcontroller because it is compact, reliable, easy to program, and provides enough GPIO pins to control multiple inputs and outputs efficiently. LEDs were chosen as they are low cost, power efficient, and ideal for clearly indicating player lives and turns during gameplay. A display module was selected to show game status, instructions, and results, improving user interaction. The buzzer was included to create immersive sound effects such as gunshots and alerts, enhancing the overall experience. Push buttons were used because they are simple, durable, and responsive for player controls. Resistors, jumper wires, and a breadboard were chosen to ensure safe connections, easy assembly, and quick modifications during prototyping and testing.`
 
 
 ## 11.3 Items You chose
