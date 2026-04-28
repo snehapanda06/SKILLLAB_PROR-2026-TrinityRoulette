@@ -229,7 +229,8 @@ Physical Structure: The project is built as a tabletop gaming unit containing co
 Add an early sketch of the full idea.
 
 **Insert image below:**  
-`[""C:\Users\Acer\Downloads\prebasic.jpeg""]`
+<img width="1212" height="1600" alt="image" src="https://github.com/user-attachments/assets/a8db2170-8d01-431f-8fcb-dde7e4861a17" />
+
 
 Example:
 
@@ -250,8 +251,8 @@ Add a sketch with labels showing:
 - output elements.
 
 **Insert image below:**  
-`[C:\Users\Acer\Downloads\basicsketch.jpeg]`
-<img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/95637f31-b4e7-4427-a9e1-4b63fbeb0ac5" />
+<img width="1280" height="1112" alt="image" src="https://github.com/user-attachments/assets/5fc8ae6f-d2fb-4401-8ade-82d42a5158d8" />
+
 
 ## 7.3 Approximate Dimensions
 
