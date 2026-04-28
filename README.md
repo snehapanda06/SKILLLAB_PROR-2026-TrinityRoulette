@@ -118,20 +118,16 @@ The idea for Chamber Zero is inspired by the popular game Buckshot Roulette, whi
 
 List what inspired the project.
 
-| Source Type | Title / Link                                                        | What Inspired You                                                                         |
-| ----------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `[Video]`   | `https://www.instagram.com/reel/DW4CT7WCDry/?igsh=cXg3dzAxYmdncDBo` | `How projection mapping can be used to create interactive digital + physical experiences` |
-|             |                                                                     |                                                                                           |
-|             |                                                                     |                                                                                           |
+| Source Type | Title / Link                                                        | What Inspired You                                                         |
+| ----------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `[Video]`   | `https://www.youtube.com/watch?v=Misd0_d_5dw`                       | `We were inspired to recreate the suspenseful and fun experience of Buckshot Roulette in the real world using hardware components and embedded technology.`
 
 ## 3.2 Original Twist
 
 What makes your project original?
 
 **Response:**  
-
-
----
+Our project brings the experience into the physical world using real hardware controls, sensors, lighting effects, and face-to-face player interaction, making gameplay more immersive and engaging.
 
 # 4. Project Intent
 
