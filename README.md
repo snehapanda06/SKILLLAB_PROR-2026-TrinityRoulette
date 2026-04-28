@@ -134,11 +134,8 @@ Our project brings the experience into the physical world using real hardware co
 ## 4.1 User Journey 
 
 Describe exactly how a user will use the project.Make it a story
-**Response:**  
-
-                                                  |
-
-
+**Response:**
+A user approaches Chamber Zero and is greeted by a dramatic game setup with lights, sound effects, and a display screen showing the start menu. After pressing the start button, two players take their positions and the system randomly begins the round. Each player takes turns making decisions under pressure while the display updates the game status in real time. As the round progresses, LED effects and sound cues build suspense, making every turn exciting and unpredictable. Players continue until one participant wins the match, after which the system announces the winner and resets for the next game.
 
 ---
 
@@ -153,12 +150,12 @@ Describe exactly how a user will use the project.Make it a story
 What is the smallest version of this project that still delivers the core experience?
 
 **Response:**  
-
+The smallest version of Chamber Zero that still delivers the core experience would consist of an RP2040 microcontroller, two push buttons for player actions, an LED indicator system, a small display screen, and a speaker for sound effects. Players would take turns pressing buttons while the programmed logic randomly determines outcomes and updates the display, preserving the suspense, strategy, and interactive gameplay even in a compact setup.
 
 ## 5.3 Stretch Features
 
 What features are nice to have but not essential?
-
+Features that are nice to have include advanced sound effects, decorative lighting, custom casing, vibration feedback, multiplayer modes, score history, mobile app connectivity, voice announcements, rechargeable battery support, and themed visual elements, but the core gameplay can function effectively without them.
 
 ---
 
@@ -174,15 +171,15 @@ Check all that apply.
 
 - [x] Sensor-based
 
-- [x] App-connected
+- [ ] App-connected
 
-- [x] Motorized
+- [ ] Motorized
 
 - [ ] Sound-based
 
 - [x] Light-based
 
-- [x] Screen/UI-based
+- [ ] Screen/UI-based
 
 - [x] Fabricated structure
 
@@ -205,13 +202,21 @@ Include:
 - app interaction if any.
 
 **Response:**  
+Input: Players use push buttons or trigger controls to make decisions and perform actions during the game.
+Processing: A RP2040 microcontroller receives the inputs, runs the programmed game logic, controls turns, randomly generates outcomes, and updates player status.
+Output: The system displays results through an LCD screen, LED lights, and sound effects to show turns, actions, and winners.
+Physical Structure: The project is built as a tabletop gaming unit containing controls, display, electronic components, wiring, and a themed outer design.
 
 ## 6.3 Input / Output Map
 
-| System Part                              | Type            | What It Does                                                               |
-
-
----
+| System Part                              | Type               | What It Does                                                               |
+| RP 2040                                  | Microcontroller    | Receives player inputs, processes them, controls game logic, and manages outputs.
+|LEDs                                      | Output element     | Display lighting effects, player turns, alerts, and game status.
+|Push Buttons                              | User touch points  | Allow players to make choices, start the game, and perform actions during turns.
+|Buzzer                                    |Audio Output Device | Produces sound effects, alerts, and suspense cues during gameplay.
+|LCD Display                               |Visual Output Unit  | Shows menus, turns, player status, health, and game results.
+|Breadboard                                |Circuit Platform    | Holds and connects the electronic components of the system.
+|Jumper Wires                              |Connection Medium   |Transfer signals and power between components
 
 # 7. Sketches and Visual Planning
 
@@ -220,7 +225,7 @@ Include:
 Add an early sketch of the full idea.
 
 **Insert image below:**  
-`["C:\Users\Acer\Downloads\basicsketch.jpeg"]`
+`[""C:\Users\Acer\Downloads\prebasic.jpeg""]`
 
 Example:
 
@@ -241,7 +246,7 @@ Add a sketch with labels showing:
 - output elements.
 
 **Insert image below:**  
-`[Upload image and link here]`
+`[C:\Users\Acer\Downloads\basicsketch.jpeg]`
 <img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/95637f31-b4e7-4427-a9e1-4b63fbeb0ac5" />
 
 ## 7.3 Approximate Dimensions
