@@ -77,7 +77,7 @@ By the final review, this README should clearly show:
 
 ## 1.4 One-Line Pitch
 
-Chamber Zero is a real-life interactive adaptation of Buckshot Roulette that blends suspense, strategy, and probability through smart embedded hardware and immersive gameplay.
+Chamber Zero is a real life interactive adaptation of Buckshot Roulette that blends suspense, strategy, and probability through smart embedded hardware and immersive gameplay.
 
 ## 1.5 Expanded Project Idea
 
@@ -88,7 +88,7 @@ In 1–2 paragraphs, explain:
 - what technologies are involved.
 
 **Response:**  
-`A projected and fully customizable time portal can transform engineering education into an immersive PUBG-style battlefield experience from the comfort of home. In this environment, students can learn engineering concepts by entering a virtual battlefield where challenges, obstacles, and missions are designed around real technical problems. Instead of passively studying theory, learners actively apply concepts such as electronics, coding, sensors, robotics, mechanics, and system design to complete missions, solve problems, and progress through different levels. This approach makes engineering education more interactive, engaging, and practical by combining gaming, simulation, and hands-on problem-solving in a familiar and exciting format.`
+`Chamber Zero is an interactive hardware based strategy game where players make high-pressure decisions in a tense, risk-driven environment. It creates an immersive and engaging experience through suspenseful turn based gameplay, competitive interaction, and dynamic lighting and sound effects that keep players on edge. The project integrates technologies such as an RP2040 Shrike board, sensors, tactile push buttons, LED indicators, display modules, and programmed control logic to deliver a responsive and intelligent gaming system.`
 
 ---
 
@@ -112,6 +112,7 @@ You are allowed to build:
 
 
 # 3. Inspiration
+The idea for Chamber Zero is inspired by the popular game Buckshot Roulette, which reimagines the classic concept of Russian Roulette into a suspenseful and strategic interactive experience. Building on this inspiration, our project transforms the concept into a safe real life hardware based game using modern embedded technology, immersive effects, and engaging gameplay.
 
 ## 3.1 References
 
