@@ -220,7 +220,7 @@ Include:
 Add an early sketch of the full idea.
 
 **Insert image below:**  
-`[Upload image and link here]`
+`["C:\Users\Acer\Downloads\basicsketch.jpeg"]`
 
 Example:
 
