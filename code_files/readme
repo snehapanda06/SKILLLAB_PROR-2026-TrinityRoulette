@@ -1,1 +1,221 @@
-Insert your documented code here
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+// Pins
+const int p1_leds[] = {10, 11, 14};
+const int p2_leds[] = {15, 16, 17};
+const int btn_opp = 18;
+const int btn_self = 19;
+const int buzzerPin = 21;
+
+// Game Variables
+int p1_hp = 3;
+int p2_hp = 3;
+String p1_name = "Player 1";
+String p2_name = "Player 2";
+bool p1Turn = true;
+
+int chamber[8]; // Max 8 shells
+int totalShells = 0;
+int currentShell = 0;
+
+// Custom LCD Characters - UPDATED for RP2040 standard binary formatting
+byte liveShell[8]  = {0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111}; 
+byte blankShell[8] = {0b11111, 0b10001, 0b10001, 0b10001, 0b10001, 0b10001, 0b10001, 0b11111}; 
+
+enum GameState { INIT_PLAYERS, LOAD_CHAMBER, TURN_WAIT, RESOLVE_SHOT, GAME_OVER };
+GameState state = INIT_PLAYERS;
+
+void setup() {
+  Serial.begin(115200);
+  Wire.setSDA(8);
+  Wire.setSCL(9);
+  Wire.begin();
+  
+  lcd.init();
+  lcd.backlight();
+  delay(100); // Memory buffer for LCD chars
+  lcd.createChar(0, liveShell);
+  lcd.createChar(1, blankShell);
+  
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(btn_opp, INPUT_PULLUP);
+  pinMode(btn_self, INPUT_PULLUP);
+
+  for(int i = 0; i < 3; i++) {
+    pinMode(p1_leds[i], OUTPUT);
+    pinMode(p2_leds[i], OUTPUT);
+  }
+  
+  randomSeed(analogRead(26)); 
+  updateLEDs();
+}
+
+void loop() {
+  switch (state) {
+    case INIT_PLAYERS: {
+      lcd.clear();
+      lcd.print("Check Serial...");
+      Serial.println("\n--- BUCKSHOT ROULETTE ---");
+      Serial.println("Enter P1 Name:");
+      while(!Serial.available());
+      p1_name = Serial.readStringUntil('\n');
+      p1_name.trim();
+      
+      Serial.println("Enter P2 Name:");
+      while(!Serial.available());
+      p2_name = Serial.readStringUntil('\n');
+      p2_name.trim();
+      
+      p1_hp = 3; p2_hp = 3;
+      p1Turn = true;
+      updateLEDs();
+      state = LOAD_CHAMBER;
+      break;
+    }
+
+    case LOAD_CHAMBER: { // SCOPE ISOLATED
+      totalShells = random(3, 7); 
+      int liveCount = random(1, totalShells); 
+      int blankCount = totalShells - liveCount;
+      
+      // Fill array
+      for(int i=0; i<totalShells; i++) {
+        chamber[i] = (i < liveCount) ? 1 : 0;
+      }
+      
+      // Shuffle array
+      for (int i = 0; i < totalShells; i++) {
+        int n = random(0, totalShells);
+        int temp = chamber[i];
+        chamber[i] = chamber[n];
+        chamber[n] = temp;
+      }
+      
+      currentShell = 0;
+      
+      // Display Shells
+      lcd.clear();
+      lcd.print("LOADED:");
+      lcd.setCursor(0, 1);
+      for(int i=0; i<totalShells; i++) {
+        lcd.write(byte(chamber[i] == 1 ? 0 : 1)); 
+        lcd.print(" ");
+      }
+      delay(3000); 
+      
+      // Hide them
+      lcd.setCursor(0, 1);
+      for(int i=0; i<totalShells; i++) {
+        lcd.print("? ");
+      }
+      delay(2000);
+      state = TURN_WAIT;
+      break;
+    }
+
+    case TURN_WAIT: {
+      lcd.clear();
+      lcd.print(p1Turn ? p1_name : p2_name);
+      lcd.print("'s Turn");
+      lcd.setCursor(0, 1);
+      lcd.print("Opponent or Self?");
+      
+      while(true) {
+        if (digitalRead(btn_opp) == LOW) {
+          resolveShot(false); 
+          break;
+        }
+        if (digitalRead(btn_self) == LOW) {
+          resolveShot(true); 
+          break;
+        }
+        delay(50);
+      }
+      break;
+    }
+
+    case GAME_OVER: { // SCOPE ISOLATED
+      lcd.clear();
+      lcd.print("WINNER:");
+      lcd.setCursor(0, 1);
+      lcd.print(p1_hp > 0 ? p1_name : p2_name);
+      
+      Serial.println("Game Over! Type 'R' to rematch, 'N' for new players.");
+      while(!Serial.available());
+      String cmd = Serial.readStringUntil('\n');
+      cmd.trim();
+      cmd.toUpperCase();
+      
+      if (cmd == "R") {
+        p1_hp = 3; p2_hp = 3;
+        p1Turn = true;
+        updateLEDs();
+        state = LOAD_CHAMBER;
+      } else {
+        state = INIT_PLAYERS;
+      }
+      break;
+    }
+  }
+}
+
+void resolveShot(bool shootSelf) {
+  int isLive = chamber[currentShell];
+  currentShell++;
+  
+  lcd.clear();
+  lcd.print(p1Turn ? p1_name : p2_name);
+  lcd.print(" shoots ");
+  lcd.print(shootSelf ? "SELF" : "OPP");
+  
+  delay(1500); 
+  
+  lcd.setCursor(0, 1);
+  if (isLive) {
+    lcd.print("BANG! (LIVE)");
+    Serial.println("CMD:BANG");
+    
+    // Apply damage & buzzer
+    if (shootSelf) { p1Turn ? p1_hp-- : p2_hp--; } 
+    else { p1Turn ? p2_hp-- : p1_hp--; }
+    
+    updateLEDs();
+    digitalWrite(buzzerPin, HIGH);
+    delay(1500); 
+    digitalWrite(buzzerPin, LOW);
+    
+    p1Turn = !p1Turn; 
+    
+  } else {
+    lcd.print("*click* (BLANK)");
+    Serial.println("CMD:CLICK");
+    delay(1500);
+    
+    if (!shootSelf) {
+      p1Turn = !p1Turn; 
+    }
+  }
+  
+  delay(1000);
+  
+  if (p1_hp <= 0 || p2_hp <= 0) {
+    state = GAME_OVER;
+  } else if (currentShell >= totalShells) {
+    lcd.clear();
+    lcd.print("CHAMBER EMPTY");
+    delay(2000);
+    state = LOAD_CHAMBER;
+  } else {
+    state = TURN_WAIT;
+  }
+}
+
+void updateLEDs() {
+  for(int i = 0; i < 3; i++) {
+    digitalWrite(p1_leds[i], i < p1_hp ? HIGH : LOW);
+    digitalWrite(p2_leds[i], i < p2_hp ? HIGH : LOW);
+  }
+}
