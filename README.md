@@ -61,10 +61,11 @@ By the final review, this README should clearly show:
 
 ## 1.2 Team Members
 
-| Name           | Primary Role                    | Secondary Role | Strengths Brought to the Project |
-| -------------- | ------------------------------- | -------------- | -------------------------------- |
-| `Gopalakrishnan` | `[Electronics / Coding / App ]` | `Documentation`  | `Documentation, Gift of Gab `|
-| `KAder Shaikh`  | `[Electronics / Fabrication]`   | `[Coding]`     | `Material Handling, Hardware`    |
+| Name          | Primary Role                    | Secondary Role     | Strengths Brought to the Project |
+| ------------- | ------------------------------- | --------------     | -------------------------------- |
+| `Sneha Panda` | `[Hardware designing ]`         | `[Documentation]`  | `Designing, Documentation, Git`  |
+| `Saad Noor`   | `[Electronics]`                 | `[Coding]`         | `Material Handling, Hardware`    |
+| `Raj Shukla`  | `[Logic and coding]`            | `[Electronics]`    | `Connection Handling, Hardware`  |
 
 ## 1.3 Chamber Zero
 
